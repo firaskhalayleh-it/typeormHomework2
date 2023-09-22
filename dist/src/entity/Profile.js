@@ -36,7 +36,7 @@ __decorate([
     __metadata("design:type", Date)
 ], Profile.prototype, "dateOfBirth", void 0);
 __decorate([
-    (0, typeorm_1.OneToOne)(() => User_js_1.User),
+    (0, typeorm_1.OneToOne)(() => User_js_1.User, user => user.profile),
     __metadata("design:type", User_js_1.User)
 ], Profile.prototype, "user", void 0);
 Profile = __decorate([

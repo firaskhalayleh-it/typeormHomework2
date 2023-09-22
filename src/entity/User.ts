@@ -10,15 +10,15 @@ export class User extends BaseEntity {
     id: number
 
     @Column()
-    firstName: string
+    username: string
 
     @Column()
-    lastName: string
+    password: string
 
     @Column()
-    age: number
+    email: string
 
-    @ManyToMany(()=>Role)
+    @ManyToMany(()=>Role, roles=>roles.users)
     role:Role
    @OneToOne(()=>Profile)
    profile:Profile

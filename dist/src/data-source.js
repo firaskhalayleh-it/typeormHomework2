@@ -13,7 +13,7 @@ exports.AppDataSource = new typeorm_1.DataSource({
     port: 3306,
     username: 'root',
     password: '',
-    database: '',
+    database: 'localhost',
     synchronize: true,
     logging: false,
     migrations: [],

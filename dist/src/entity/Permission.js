@@ -26,7 +26,7 @@ __decorate([
     __metadata("design:type", String)
 ], Permission.prototype, "name", void 0);
 __decorate([
-    (0, typeorm_1.ManyToMany)(() => Role_js_1.Role),
+    (0, typeorm_1.ManyToMany)(() => Role_js_1.Role, role => role.permissions),
     __metadata("design:type", Role_js_1.Role)
 ], Permission.prototype, "role", void 0);
 Permission = __decorate([

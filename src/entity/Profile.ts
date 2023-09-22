@@ -15,6 +15,6 @@ export class Profile extends BaseEntity {
     @Column({ nullable: false })
     dateOfBirth: Date;
 
-    @OneToOne(() => User)
+    @OneToOne(() => User, user=>user.profile)
     user:User
 }

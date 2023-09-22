@@ -13,9 +13,9 @@ export class Role extends BaseEntity {
     name:string
 
 
-    @ManyToMany(()=>User)
+    @ManyToMany(()=>User,user=>user.role)
     users:User[];
 
-    @ManyToMany(()=>Permission, {cascade:true , eager:true})
+    @ManyToMany(()=>Permission, permission =>permission.role ,{cascade:true , eager:true})
     permissions : Permission[];
 }

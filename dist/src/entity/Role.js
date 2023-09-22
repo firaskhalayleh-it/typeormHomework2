@@ -28,11 +28,11 @@ __decorate([
     __metadata("design:type", String)
 ], Role.prototype, "name", void 0);
 __decorate([
-    (0, typeorm_1.ManyToMany)(() => User_js_1.User),
+    (0, typeorm_1.ManyToMany)(() => User_js_1.User, user => user.role),
     __metadata("design:type", Array)
 ], Role.prototype, "users", void 0);
 __decorate([
-    (0, typeorm_1.ManyToMany)(() => Permission_js_1.Permission, { cascade: true, eager: true }),
+    (0, typeorm_1.ManyToMany)(() => Permission_js_1.Permission, permission => permission.role, { cascade: true, eager: true }),
     __metadata("design:type", Array)
 ], Role.prototype, "permissions", void 0);
 Role = __decorate([

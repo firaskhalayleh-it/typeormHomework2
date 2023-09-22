@@ -15,9 +15,9 @@ const Profile_js_1 = require("./Profile.js");
 const Role_js_1 = require("./Role.js");
 let User = class User extends typeorm_1.BaseEntity {
     id;
-    firstName;
-    lastName;
-    age;
+    username;
+    password;
+    email;
     role;
     profile;
 };
@@ -28,17 +28,17 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], User.prototype, "firstName", void 0);
+], User.prototype, "username", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], User.prototype, "lastName", void 0);
+], User.prototype, "password", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
-], User.prototype, "age", void 0);
+    __metadata("design:type", String)
+], User.prototype, "email", void 0);
 __decorate([
-    (0, typeorm_1.ManyToMany)(() => Role_js_1.Role),
+    (0, typeorm_1.ManyToMany)(() => Role_js_1.Role, roles => roles.users),
     __metadata("design:type", Role_js_1.Role)
 ], User.prototype, "role", void 0);
 __decorate([

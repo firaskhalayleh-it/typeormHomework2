@@ -10,8 +10,8 @@ export class Permission extends BaseEntity {
    @Column()
    name : string
 
-   @ManyToMany(() => Role)
-   role: Role
+   @ManyToMany(() => Role, role=>role.permissions)
+   role: Role;
 
 
 }

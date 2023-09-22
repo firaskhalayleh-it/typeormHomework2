@@ -20,9 +20,9 @@ router.post('/api/users', async (req, res) => {
 
     // Create a new user
     const newUser = User.create({
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      age: req.body.age,
+      username: req.body.username,
+      password: req.body.password,
+      email: req.body.email,
       role: role,
     });
 
