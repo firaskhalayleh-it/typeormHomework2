@@ -3,6 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.app = void 0;
 require("reflect-metadata");
 const express_1 = __importDefault(require("express"));
 const user_js_1 = __importDefault(require("./routes/user.js")); // Replace with the correct path to your user router
@@ -11,6 +12,7 @@ const data_source_js_1 = require("./src/data-source.js");
 const auth_js_1 = require("./middleware/auth.js");
 const autharize_js_1 = require("./middleware/autharize.js");
 const app = (0, express_1.default)();
+exports.app = app;
 const PORT = process.env.PORT || 3000;
 app.use(express_1.default.json());
 app.use(auth_js_1.authenticate);

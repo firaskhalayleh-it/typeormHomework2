@@ -21,7 +21,7 @@ app.use('/api/users', userRouter);
 
 // Mount the rolesRouter at the '/api/roles' path
 app.use('/api/roles', rolesRouter);
-rolesRouter.use('/admin-actions', authorize(['admin']), (req, res, next) => {
+rolesRouter.use('/admin-actions',authorize, (req, res, next) => {
   res.send('welcome admin')
   res.status(400).send('you are not authorized!!')
 });

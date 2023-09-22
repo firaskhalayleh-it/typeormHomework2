@@ -34,7 +34,8 @@
    "scripts": {
       "build-tsc": "tsc -w",
       "run-watch": "nodemon ./dist/app.js",
-      "dev": "concurrently \"npm:build-tsc\"  \"npm:run-watch\""
+      "dev": "concurrently \"npm:build-tsc\"  \"npm:run-watch\"",
+      "test": "tsc && jest"
    },
    "author": "firas",
    "license": "ISC",
