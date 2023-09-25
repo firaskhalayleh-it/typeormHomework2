@@ -16,7 +16,7 @@ const Permission_js_1 = require("./Permission.js");
 let Role = class Role extends typeorm_1.BaseEntity {
     id;
     name;
-    users;
+    user;
     permissions;
 };
 __decorate([
@@ -29,8 +29,9 @@ __decorate([
 ], Role.prototype, "name", void 0);
 __decorate([
     (0, typeorm_1.ManyToMany)(() => User_js_1.User, user => user.role),
-    __metadata("design:type", Array)
-], Role.prototype, "users", void 0);
+    (0, typeorm_1.JoinTable)(),
+    __metadata("design:type", User_js_1.User)
+], Role.prototype, "user", void 0);
 __decorate([
     (0, typeorm_1.ManyToMany)(() => Permission_js_1.Permission, permission => permission.role, { cascade: true, eager: true }),
     __metadata("design:type", Array)

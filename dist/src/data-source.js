@@ -9,11 +9,11 @@ const Profile_js_1 = require("./entity/Profile.js");
 const Role_js_1 = require("./entity/Role.js");
 exports.AppDataSource = new typeorm_1.DataSource({
     type: 'mysql',
-    host: 'localhost',
+    host: 'database-1.ckxcq2pvrc9s.eu-west-2.rds.amazonaws.com',
     port: 3306,
-    username: 'root',
-    password: '',
-    database: 'localhost',
+    username: 'admin',
+    password: '12345678',
+    database: 'homework',
     synchronize: true,
     logging: false,
     migrations: [],

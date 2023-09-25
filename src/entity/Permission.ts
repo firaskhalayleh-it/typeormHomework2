@@ -1,4 +1,4 @@
-import { BaseEntity, Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Role } from "./Role.js";
 
 
@@ -11,6 +11,7 @@ export class Permission extends BaseEntity {
    name : string
 
    @ManyToMany(() => Role, role=>role.permissions)
+   @JoinTable()
    role: Role;
 
 

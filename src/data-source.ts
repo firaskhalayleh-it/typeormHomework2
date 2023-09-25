@@ -7,11 +7,11 @@ import { Role } from "./entity/Role.js"
 
 export const AppDataSource = new DataSource({
   type: 'mysql',
-  host: 'localhost',
+  host: 'database-1.ckxcq2pvrc9s.eu-west-2.rds.amazonaws.com',
   port: 3306,
-  username:'root',
-  password: '',
-  database: 'localhost',
+  username:'admin',
+  password: '12345678',
+  database: 'homework',
   synchronize: true,
   logging: false,
   migrations: [],

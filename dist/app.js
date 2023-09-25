@@ -8,24 +8,39 @@ require("reflect-metadata");
 const express_1 = __importDefault(require("express"));
 const user_js_1 = __importDefault(require("./routes/user.js")); // Replace with the correct path to your user router
 const roles_js_1 = __importDefault(require("./routes/roles.js"));
+const profile_js_1 = __importDefault(require("./routes/profile.js"));
 const data_source_js_1 = require("./src/data-source.js");
-const auth_js_1 = require("./middleware/auth.js");
-const autharize_js_1 = require("./middleware/autharize.js");
+const User_js_1 = require("./src/entity/User.js");
 const app = (0, express_1.default)();
 exports.app = app;
 const PORT = process.env.PORT || 3000;
 app.use(express_1.default.json());
-app.use(auth_js_1.authenticate);
+// app.use(authenticate);
+app.get('/users', async (req, res) => {
+    try {
+        // Get the user repository
+        // Use query builder to select specific columns (id, username, password)
+        const users = await User_js_1.User
+            .createQueryBuilder('user')
+            .select(['user.id', 'user.username', 'user.password'])
+            .getMany();
+        res.status(200).json(users);
+    }
+    catch (error) {
+        console.error('Error fetching user data:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
 app.get('/', (req, res) => {
     res.send('Welcome to the application!');
 });
-app.use('/api/users', user_js_1.default);
-// Mount the rolesRouter at the '/api/roles' path
-app.use('/api/roles', roles_js_1.default);
-roles_js_1.default.use('/admin-actions', (0, autharize_js_1.authorize)(['admin']), (req, res, next) => {
-    res.send('welcome admin');
-    res.status(400).send('you are not authorized!!');
-});
+app.use('', profile_js_1.default);
+app.use('', user_js_1.default);
+app.use('', roles_js_1.default);
+// rolesRouter.use('/admin-actions',authorize, (req, res, next) => {
+//   res.send('welcome admin')
+//   res.status(400).send('you are not authorized!!')
+// });
 app.listen(PORT, () => {
     (0, data_source_js_1.initialize)();
     console.log(`Server is running on port ${PORT}`);

@@ -5,41 +5,27 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const User_js_1 = require("../src/entity/User.js");
-const Profile_js_1 = require("../src/entity/Profile.js");
-const Role_js_1 = require("../src/entity/Role.js");
 const router = (0, express_1.default)();
 router.use(express_1.default.json());
+// Create a new user and profile
 router.post('/api/users', async (req, res) => {
     try {
-        const roleName = req.body.type;
-        // Find the role by name
-        const role = await Role_js_1.Role.findOne({ where: { name: roleName } });
-        if (!role) {
-            return res.status(400).json({ error: 'Role not found.' });
-        }
         // Create a new user
         const newUser = User_js_1.User.create({
             username: req.body.username,
             password: req.body.password,
             email: req.body.email,
-            role: role,
         });
         // Create a new profile
-        const newProfile = Profile_js_1.Profile.create({
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            // Add other profile attributes here
-        });
-        // Associate the user and the profile
-        newUser.profile = newProfile;
-        // Save both the user and the profile to the database
+        // Associate the profile with the user
+        // Save both the user and profile to their respective tables
         await newUser.save();
-        await newProfile.save();
-        res.status(201).json(newUser);
+        // Return the user and profile as a response
+        res.status(201).json({ user: newUser });
     }
     catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Failed to create user.' });
+        console.error('Error creating user and profile:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
     }
 });
 exports.default = router;

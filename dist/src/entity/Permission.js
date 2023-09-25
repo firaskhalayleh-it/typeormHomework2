@@ -27,6 +27,7 @@ __decorate([
 ], Permission.prototype, "name", void 0);
 __decorate([
     (0, typeorm_1.ManyToMany)(() => Role_js_1.Role, role => role.permissions),
+    (0, typeorm_1.JoinTable)(),
     __metadata("design:type", Role_js_1.Role)
 ], Permission.prototype, "role", void 0);
 Permission = __decorate([

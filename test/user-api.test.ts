@@ -1,5 +1,25 @@
 import request from 'supertest';
 import app from '../routes/user.js'; // Import your Express app here
+import { User } from '../src/entity/User.js';
+import { createConnection, getConnection } from 'typeorm';
+
+beforeAll(async () => {
+  // Initialize TypeORM connection
+  await createConnection({
+    // Your TypeORM configuration for the test database
+    type: 'mysql', // Or your database type
+    database: ':memory:', // Use an in-memory database for testing
+    entities: [User], // Register your User entity
+    synchronize: true, // Auto-create database schema (for testing only)
+  });
+});
+
+afterAll(async () => {
+  // Close the TypeORM connection after all tests
+  const connection = getConnection();
+  await connection.close();
+});
+
 
 describe('User API Routes', () => {
   it('should create a new user', async () => {

@@ -22,7 +22,7 @@ let User = class User extends typeorm_1.BaseEntity {
     profile;
 };
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)(),
+    (0, typeorm_1.PrimaryGeneratedColumn)("increment"),
     __metadata("design:type", Number)
 ], User.prototype, "id", void 0);
 __decorate([
@@ -38,11 +38,13 @@ __decorate([
     __metadata("design:type", String)
 ], User.prototype, "email", void 0);
 __decorate([
-    (0, typeorm_1.ManyToMany)(() => Role_js_1.Role, roles => roles.users),
+    (0, typeorm_1.ManyToMany)(() => Role_js_1.Role, role => role.user),
+    (0, typeorm_1.JoinTable)(),
     __metadata("design:type", Role_js_1.Role)
 ], User.prototype, "role", void 0);
 __decorate([
-    (0, typeorm_1.OneToOne)(() => Profile_js_1.Profile),
+    (0, typeorm_1.OneToOne)(() => Profile_js_1.Profile, profile => profile.user, { eager: true }),
+    (0, typeorm_1.JoinColumn)(),
     __metadata("design:type", Profile_js_1.Profile)
 ], User.prototype, "profile", void 0);
 User = __decorate([
